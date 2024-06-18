@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+                   id="sample-definition"
+                   targetNamespace="http://camunda.org/examples">
+  <bpmn:process id="sample-process" isExecutable="true">
+    <bpmn:startEvent id="startEvent" name="Start">
+      <bpmn:outgoing>flow1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="endEvent" name="End">
+      <bpmn:incoming>flow1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="flow1" sourceRef="startEvent" targetRef="endEvent"/>
+  </bpmn:process>
+</bpmn:definitions>

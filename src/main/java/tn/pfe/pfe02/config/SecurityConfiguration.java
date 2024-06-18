@@ -38,9 +38,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable) // Nouvelle méthode pour désactiver CSRF
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN") // Only accessible by ADMIN
-                        .requestMatchers("/user/**").hasRole("EMPLOYEE") // Only accessible by EMPLOYEE
-                        .requestMatchers("/user/**").hasRole("CANDIDATE") // Only accessible by CANDIDATE
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
