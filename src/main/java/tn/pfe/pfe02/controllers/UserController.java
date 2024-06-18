@@ -1,6 +1,6 @@
 package tn.pfe.pfe02.controllers;
 
-import lombok.AllArgsConstructor;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +13,17 @@ import tn.pfe.pfe02.generic.GenericController;
 import tn.pfe.pfe02.mapper.IUserMapper;
 import tn.pfe.pfe02.services.IUserService;
 
-import java.util.List;
-
+@RequestMapping("/user")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
 public class UserController extends GenericController<User,Integer> {
     private final IUserService userService;
     private final IUserMapper userMapper;
+
+    @GetMapping("/test")
+    public ResponseEntity<String> sayHello() {
+        return ResponseEntity.ok("Here is your resource");
+    }
 
     @GetMapping("/me")
     public ResponseEntity<?> authenticatedUser() {

@@ -29,7 +29,7 @@ import java.util.List;
 public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    private final IUserService utilisateurService;
+    private final IUserService userService;
 
 
     @Bean
@@ -37,10 +37,10 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable) // Nouvelle méthode pour désactiver CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Only accessible by ADMIN
-                        .requestMatchers("/utilisateur/employe/**").hasRole("EMPLOYEE") // Only accessible by EMPLOYEE
-                        .requestMatchers("/utilisateur/candidat/**").hasRole("CANDIDAT") // Only accessible by CANDIDATE
+                        .requestMatchers("/user/**").hasRole("EMPLOYEE") // Only accessible by EMPLOYEE
+                        .requestMatchers("/user/**").hasRole("CANDIDATE") // Only accessible by CANDIDATE
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
@@ -80,7 +80,7 @@ public class SecurityConfiguration {
     @Bean
     AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(utilisateurService.userDetailsService());
+        authProvider.setUserDetailsService(userService.userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
 
         return authProvider;
