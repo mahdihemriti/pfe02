@@ -4,6 +4,7 @@ import lombok.*;
 import tn.pfe.pfe02.entities.Department;
 import tn.pfe.pfe02.entities.Gender;
 import tn.pfe.pfe02.entities.LeaveRequest;
+import tn.pfe.pfe02.entities.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,4 +27,5 @@ public class EmployeeDTO {
     private Double remainingLeaveDays;
     private Department department;
     private List<LeaveRequest> leaveRequests;
+    private User manager;
 }

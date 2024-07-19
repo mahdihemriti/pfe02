@@ -18,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class User implements Serializable, UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +36,6 @@ public class User implements Serializable, UserDetails {
     private LocalDate dateOfBirth;
 
     // Employee
-
     private LocalDate hireDate;
     private String jobTitle;
     private Double remainingLeaveDays;
@@ -44,6 +44,14 @@ public class User implements Serializable, UserDetails {
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<LeaveRequest> leaveRequests;
+
+    // Manager relationship
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
+    private User manager;
+
+    @OneToMany(mappedBy = "manager")
+    private List<User> employees;
 
     // Candidate
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

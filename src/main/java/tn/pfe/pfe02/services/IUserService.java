@@ -7,6 +7,7 @@ import tn.pfe.pfe02.entities.User;
 import tn.pfe.pfe02.generic.IGenericService;
 
 public interface IUserService extends IGenericService<User,Integer> {
+
     UserDetailsService userDetailsService();
     User getAuthenticatedUser();
     //CandidateDTO getCandidateDTOById(Integer id);

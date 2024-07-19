@@ -1,11 +1,13 @@
-package tn.pfe.pfe02.mapper;
+package tn.pfe.pfe02.mapper.imp;
 
 import org.springframework.stereotype.Component;
 import tn.pfe.pfe02.dto.CandidateDTO;
 import tn.pfe.pfe02.dto.EmployeeDTO;
 import tn.pfe.pfe02.entities.User;
+import tn.pfe.pfe02.mapper.IUserMapper;
+
 @Component
-public class UserMapperImp implements IUserMapper{
+public class UserMapperImp implements IUserMapper {
     @Override
     public CandidateDTO convertToCandidateDTO(User user) {
         if (user == null) {
@@ -43,6 +45,7 @@ public class UserMapperImp implements IUserMapper{
                 .remainingLeaveDays(user.getRemainingLeaveDays())
                 .department(user.getDepartment())
                 .leaveRequests(user.getLeaveRequests())
+                .manager(user.getManager())
                 .build();
 
     }

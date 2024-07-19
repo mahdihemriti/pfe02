@@ -1,6 +1,7 @@
 package tn.pfe.pfe02.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,8 +19,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import tn.pfe.pfe02.services.IJwtService;
 import tn.pfe.pfe02.services.IUserService;
 
+import java.util.Collections;
 import java.util.List;
 
 @Configuration
@@ -28,7 +32,6 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-
     private final IUserService userService;
 
 
@@ -50,7 +53,7 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-    @Bean
+   /* @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
@@ -64,7 +67,7 @@ public class SecurityConfiguration {
 
         return source;
     }
-
+*/
     @Bean
     BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -83,4 +86,7 @@ public class SecurityConfiguration {
 
         return authProvider;
     }
+
+
+
 }
